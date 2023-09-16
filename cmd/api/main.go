@@ -22,11 +22,7 @@ func main() {
 	// start a web server
 	log.Printf("Starting application on port %d\n", port)
 
-	// handles a route using a function
-	// this is a lot like express app.get('/', () => {})
-	http.HandleFunc("/", Hello)
-
-	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), app.routes())
 	if err != nil {
 		log.Fatal(err)
 	}
