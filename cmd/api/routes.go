@@ -12,9 +12,15 @@ func (app *application) routes() http.Handler {
 
 	// Middleware
 	mux.Use(middleware.Recoverer)
-
+	if app.Prod {
+		mux.Use(app.enableCORS)
+	} else {
+		mux.Use(app.enableLocalCORS)
+	}
 	// Routes
 	mux.Get("/", app.Home)
+
+	mux.Get("/pokemon", app.AllPokemon)
 
 	return mux
 }
