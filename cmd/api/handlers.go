@@ -34,7 +34,7 @@ func (app *application) AllPokemon(w http.ResponseWriter, r *http.Request) {
 	var pokemon []models.Pokemon
 
 	ivysaur := models.Pokemon{
-		ID:         2,
+		PokedexId:  2,
 		Name:       "Ivysaur",
 		Types:      []string{"grass", "poison"},
 		Height:     10,
@@ -45,7 +45,7 @@ func (app *application) AllPokemon(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pikachu := models.Pokemon{
-		ID:         25,
+		PokedexId:  25,
 		Name:       "Pikachu",
 		Types:      []string{"electric"},
 		Height:     4,

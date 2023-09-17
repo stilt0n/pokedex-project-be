@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Pokemon struct {
-	ID        int      `json:"pokedexId"`
+	PokedexId int      `json:"pokedexId"`
 	Name      string   `json:"name"`
 	Types     []string `json:"types"`
 	Height    int      `json:"height"`
