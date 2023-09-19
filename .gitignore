@@ -10,3 +10,5 @@ NOTES.md
 *.out
 
 go.work
+
+.env-local

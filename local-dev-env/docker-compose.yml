@@ -1,0 +1,15 @@
+# IMPORTANT! This is for local dev only. This yml file and password should never be reused in prod
+services:
+  database:
+    image: postgres
+    container_name: pokedex-dev-env
+    restart: always
+    # In production this should use secrets. The purpose of using an env file here is less to keep
+    # the local dev environment secure and more to make it difficult for this to accidentally be
+    # used in production.
+    env_file:
+      - .env-local
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
