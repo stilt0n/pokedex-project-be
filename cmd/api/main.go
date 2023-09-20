@@ -19,14 +19,11 @@ const port = 8080
 type application struct {
 	Domain string
 	Prod   bool
-	// TODO: use repository pattern instead
-	Db repository.DatabaseRepo
+	Db     repository.DatabaseRepo
 }
 
 type pgEnv struct {
-	user string
-	pass string
-	db   string
+	user, pass, db string
 }
 
 func loadEnv(prod bool) (pgEnv, error) {
