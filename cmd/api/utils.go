@@ -55,9 +55,9 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, data in
 	return nil
 }
 
-// using variadics for optionals here is pretty awkward because ideally we'd like to
-// recieve either 0 or 1 arguments for status but not more. If we recieve more they
-// the function will return mention it in the sent json error.
+// using variadics for optionals here is is pretty awkward because ideally we'd like to
+// receive either 0 or 1 arguments for status but not more. Since we can't add this into
+// the typing of the function, we can at least mention it in the sent json error.
 func (app *application) errorJSON(w http.ResponseWriter, err error, status ...int) error {
 	statusCode := http.StatusBadRequest
 	if len(status) > 0 {
