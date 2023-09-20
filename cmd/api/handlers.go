@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"pokedex-backend/internal/models"
-	"time"
 )
 
 func (app *application) Home(w http.ResponseWriter, r *http.Request) {
@@ -31,36 +29,16 @@ func (app *application) Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) AllPokemon(w http.ResponseWriter, r *http.Request) {
-	var pokemon []models.Pokemon
-
-	ivysaur := models.Pokemon{
-		PokedexId:  2,
-		Name:       "Ivysaur",
-		Types:      []string{"grass", "poison"},
-		Height:     10,
-		Weight:     130,
-		SpriteUrl:  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-		CreatedAt:  time.Now(),
-		ModifiedAt: time.Now(),
-	}
-
-	pikachu := models.Pokemon{
-		PokedexId:  25,
-		Name:       "Pikachu",
-		Types:      []string{"electric"},
-		Height:     4,
-		Weight:     60,
-		SpriteUrl:  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-		CreatedAt:  time.Now(),
-		ModifiedAt: time.Now(),
-	}
-
-	pokemon = append(pokemon, ivysaur, pikachu)
-
-	out, err := json.Marshal(pokemon)
-
+	pokemon, err := app.Db.AllPokemon()
 	if err != nil {
 		fmt.Println(err)
+		return
+	}
+
+	out, err := json.Marshal(pokemon)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
